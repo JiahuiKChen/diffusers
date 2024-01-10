@@ -56,7 +56,7 @@ with open(PROMPT_FILE) as gen_file:
         wandb.log({"label": txt_label, "gen_count": gen_count})
         for i in range(gen_count, 0, -1):
               cond_img = get_cond_img(int_label)
-              print(f"Generating image {i} -- {gen_count - i} more to go for \"{txt_label}\"")
+              print(f"Generating image {i} for \"{txt_label}\"")
               gen_image = img_txt_pipe(cond_img, prompt=txt_label).images[0]
               gen_img_name = f"{int_label}_{i}.jpg"
               gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
