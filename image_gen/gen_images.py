@@ -2,25 +2,27 @@ import os
 import random
 import wandb
 import torch
+from accelerate import PartialState
 from diffusers import StableUnCLIPImg2ImgPipeline
 from diffusers.utils import load_image
 
 os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
 
 wandb.init(
-    project="StableUnclipImageGen"
+    project="StableUnclipImageGen",
+    group="accelerate"
 )
 
-PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
+PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_magpie.txt"
 TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
-OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT"
+OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/rand_img_cond"
 
 img_txt_pipe = StableUnCLIPImg2ImgPipeline.from_pretrained(
     "stabilityai/stable-diffusion-2-1-unclip", torch_dtype=torch.float16, 
 )
-
-img_txt_pipe = img_txt_pipe.to("cuda:0")
+distributed_state = PartialState()
+img_txt_pipe.to(distributed_state.device)
 
 # read in long-tail training data file, 
 # construct dict: {int class label: <list of image paths>}
@@ -46,19 +48,25 @@ def get_cond_img(class_label):
 
 
 # for each class, generate synthetic images with text label as prompt and randomly selected class image 
-gen_data_txt = ""
 with open(PROMPT_FILE) as gen_file:
     # each line of this file contains the label (text label is the prompt) and how many images need to be generated
-    for line in gen_file:
-        l = line.split("\"")
-        int_label = int(l[0].strip()); txt_label = l[1].strip("\""); gen_count = int(l[2].strip())
+    lines = [line.rstrip('\n') for line in gen_file]
 
-        wandb.log({"label": txt_label, "gen_count": gen_count})
-        for i in range(gen_count, 0, -1):
-              cond_img = get_cond_img(int_label)
-              print(f"Generating image {i} for \"{txt_label}\"")
-              gen_image = img_txt_pipe(cond_img, prompt=txt_label).images[0]
-              gen_img_name = f"{int_label}_{i}.jpg"
-              gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
-              # write to output file: <path to image> <class label (int)>
-              gen_data_txt += f"{gen_img_name} {int_label}\n"
+for line in lines:
+    l = line.split("\"")
+    int_label = int(l[0].strip()); txt_label = l[1].strip("\""); gen_count = int(l[2].strip())
+
+    wandb.log({"label": int_label})
+    # create dict to pass into distributed inference of {prompts: [], cond_imgs: []}
+    total_prompts = [txt_label] * gen_count
+    all_cond_imgs = [get_cond_img(int_label) for i in range(gen_count)]
+    all_indices = [i for i in range(gen_count)]
+    prompt_img_dict = {"prompts": total_prompts, "cond_imgs": all_cond_imgs, "indices": all_indices}
+    with distributed_state.split_between_processes(prompt_img_dict) as prompt_imgs:
+        # within each process, get all the prompts, images to condition on, and indices -- then generate image
+        prompts = prompt_imgs["prompts"]; cond_imgs = prompt_imgs["cond_imgs"]; indices = prompt_imgs["indices"] 
+        for i in range(len(prompts)):
+            print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
+            gen_image = img_txt_pipe(cond_imgs[i], prompts[i]).images[0] 
+            gen_img_name = f"{int_label}_{indices[i]}.jpg"
+            gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
