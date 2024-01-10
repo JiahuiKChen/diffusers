@@ -1,5 +1,7 @@
+import os
+import torch
 import wandb
-from pipeline_stable_unclip_img2img import StableUnCLIPImg2ImgPipeline
+from diffusers import StableUnCLIPImg2ImgPipeline
 from diffusers.utils import load_image
 
 os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
