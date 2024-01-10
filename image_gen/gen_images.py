@@ -7,9 +7,12 @@ from diffusers.utils import load_image
 
 os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
 
+wandb.init(
+    project="StableUnclipImageGen"
+)
 
-PROMPT_FILE = "image_gen/imagenet_lt_balance_counts.txt"
-TRAIN_DATA_TXT = "image_gen/ImageNet_LT_train.txt"
+PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
+TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
 OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT"
 
@@ -18,10 +21,6 @@ img_txt_pipe = StableUnCLIPImg2ImgPipeline.from_pretrained(
 )
 
 img_txt_pipe = img_txt_pipe.to("cuda:0")
-
-# wandb.init(
-#     project="StableUnclipImageGen"
-# )
 
 # read in long-tail training data file, 
 # construct dict: {int class label: <list of image paths>}
@@ -54,12 +53,12 @@ with open(PROMPT_FILE) as gen_file:
         l = line.split("\"")
         int_label = int(l[0].strip()); txt_label = l[1].strip("\""); gen_count = int(l[2].strip())
 
-        # wandb.log({"label": txt_label, "gen_count": gen_count})
+        wandb.log({"label": txt_label, "gen_count": gen_count})
         for i in range(gen_count, 0, -1):
-            cond_img = get_cond_img(int_label)
-            print(f"Generating image {i} -- {gen_count - i} more to go for \"{txt_label}\"")
-            gen_image = img_txt_pipe(cond_img, prompt=txt_label).images[0]
-            gen_img_name = f"{int_label}_{i}.jpg"
-            gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
-            # write to output file: <path to image> <class label (int)>
-            gen_data_txt += f"{gen_img_name} {int_label}\n"
+              cond_img = get_cond_img(int_label)
+              print(f"Generating image {i} -- {gen_count - i} more to go for \"{txt_label}\"")
+              gen_image = img_txt_pipe(cond_img, prompt=txt_label).images[0]
+              gen_img_name = f"{int_label}_{i}.jpg"
+              gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+              # write to output file: <path to image> <class label (int)>
+              gen_data_txt += f"{gen_img_name} {int_label}\n"
