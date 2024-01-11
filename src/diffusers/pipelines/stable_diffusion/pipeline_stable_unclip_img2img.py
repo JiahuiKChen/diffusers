@@ -645,6 +645,8 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
         noise_level: int = 0,
         image_embeds: Optional[torch.FloatTensor] = None,
         clip_skip: Optional[int] = None,
+        dropout: Optional[bool] = False,
+        dropout_prob: Optional[float] = 0.4,
     ):
         r"""
         The call function to the pipeline for generation.
@@ -788,6 +790,10 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
             generator=generator,
             image_embeds=image_embeds,
         )
+
+        # dropout on image embeddings if specified
+        if dropout:
+            image_embeds = torch.nn.functional.dropout(image_embeds, p=dropout_prob, training=True) * (1 - dropout_prob)
 
         # 5. Prepare timesteps
         self.scheduler.set_timesteps(num_inference_steps, device=device)

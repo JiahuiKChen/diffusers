@@ -12,5 +12,5 @@ img_txt_pipe.to("cuda:1")
 
 cond_img = load_image("bufo.jpeg")
 prompt = "worried frog"
-gen_image = img_txt_pipe(cond_img, prompt).images[0] 
+gen_image = img_txt_pipe(cond_img, prompt, dropout=True).images[0] 
 gen_image.save("gen_bufo.jpg")
