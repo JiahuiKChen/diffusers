@@ -2,6 +2,7 @@ import os
 import random
 import wandb
 import torch
+from torchvision.transforms import v2
 from accelerate import PartialState
 from diffusers import StableUnCLIPImg2ImgPipeline
 from diffusers.utils import load_image
