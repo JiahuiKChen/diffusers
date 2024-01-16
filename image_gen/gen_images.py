@@ -12,15 +12,14 @@ os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
 
 wandb.init(
     project="StableUnclipImageGen",
-    # group="accelerate-mixup"
-    group="cutmix_test"
+    group="accelerate-cutmix"
 )
 
 PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
 TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
-# OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
-OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
+OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
+# OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -111,7 +110,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
                 print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
                 gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
-                # gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+                gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
 # Gen images conditioned on cutmix-ed random pairs with the same class
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
