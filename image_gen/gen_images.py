@@ -13,7 +13,7 @@ os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 wandb.init(
     project="StableUnclipImageGen",
-    group="a40-dropout"
+    group="a40-dropout-test"
 )
 
 PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
@@ -112,7 +112,8 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
                 print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
                 gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
-                gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+                print(f"would save to {os.path.join(OUTPUT_DIR, gen_img_name)}")
+                # gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
 # Gen images conditioned on mixup-ed random pairs with the same class 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
