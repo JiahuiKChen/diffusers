@@ -8,7 +8,8 @@ from diffusers import StableUnCLIPImg2ImgPipeline
 from diffusers.utils import load_image
 
 ##################################################### SETUP
-os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
+# os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
+os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 wandb.init(
     project="StableUnclipImageGen",
