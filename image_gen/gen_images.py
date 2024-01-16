@@ -13,7 +13,7 @@ os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 wandb.init(
     project="StableUnclipImageGen",
-    group="accelerate-cutmix"
+    group="a40-dropout"
 )
 
 PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
@@ -21,7 +21,7 @@ TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.t
 TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
-OUTPUT_DIR = "/u/jiahuikc/dropout"
+OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
