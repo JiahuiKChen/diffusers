@@ -16,11 +16,18 @@ wandb.init(
     group="a40-dropout-test"
 )
 
-PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
-TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
-TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
+# MIDI BOXES
+# PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
+# TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
+# TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
+# testing output dir
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
+
+# A40 
+PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts.txt"
+TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
+TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
 OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
 
 # cutmix/mixup
