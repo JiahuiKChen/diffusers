@@ -18,8 +18,9 @@ wandb.init(
 PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts.txt"
 TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
-OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
+# OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/cutmix"
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
+OUTPUT_DIR = "/u/jiahuikc/dropout"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -112,9 +113,11 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
                 gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
-# Gen images conditioned on cutmix-ed random pairs with the same class
-# gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
-
 # Gen images conditioned on mixup-ed random pairs with the same class 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
-gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
+                
+# Gen images conditioned on cutmix-ed random paris with same class
+# gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
+                
+# Gen images conditioned on randomly selected images with same class, with dropout applied
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
