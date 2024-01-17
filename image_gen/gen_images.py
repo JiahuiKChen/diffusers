@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="a40-dropout-test"
+    group="a40-dropout"
 )
 
 # MIDI BOXES
@@ -119,8 +119,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
                 print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
                 gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
-                print(f"would save to {os.path.join(OUTPUT_DIR, gen_img_name)}")
-                # gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+                gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
 # Gen images conditioned on mixup-ed random pairs with the same class 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)

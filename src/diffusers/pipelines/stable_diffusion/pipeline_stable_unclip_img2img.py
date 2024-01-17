@@ -793,7 +793,6 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
 
         # dropout on image embeddings if specified
         if dropout:
-            print(f"doing dropout with {dropout_prob}")
             image_embeds = torch.nn.functional.dropout(image_embeds, p=dropout_prob, training=True) * (1 - dropout_prob)
 
         # 5. Prepare timesteps
