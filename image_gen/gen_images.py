@@ -125,10 +125,10 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
 
 # Gen images conditioned on mixup-ed random pairs with the same class 
-gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
+# gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
                 
 # Gen images conditioned on cutmix-ed random paris with same class
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
                 
 # Gen images conditioned on randomly selected images with same class, with dropout applied
-# gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
