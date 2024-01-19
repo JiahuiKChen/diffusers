@@ -1,0 +1,809 @@
+191 "Airedale, Airedale terrier" 1036
+192 "cairn, cairn terrier" 975
+193 "Australian terrier" 1257
+194 "Dandie Dinmont, Dandie Dinmont terrier" 1174
+195 "Boston bull, Boston terrier" 1203
+196 "miniature schnauzer" 1270
+197 "giant schnauzer" 1221
+198 "standard schnauzer" 1190
+199 "Scotch terrier, Scottish terrier, Scottie" 1247
+200 "Tibetan terrier, chrysanthemum dog" 1254
+201 "silky terrier, Sydney silky" 1066
+202 "soft-coated wheaten terrier" 1237
+203 "West Highland white terrier" 1230
+204 "Lhasa, Lhasa apso" 1262
+205 "flat-coated retriever" 1155
+206 "curly-coated retriever" 1170
+207 "golden retriever" 1161
+208 "Labrador retriever" 1195
+209 "Chesapeake Bay retriever" 1237
+210 "German short-haired pointer" 1269
+211 "vizsla, Hungarian pointer" 1269
+212 "English setter" 1166
+213 "Irish setter, red setter" 1109
+214 "Gordon setter" 1256
+215 "Brittany spaniel" 1226
+216 "clumber, clumber spaniel" 1193
+217 "English springer, English springer spaniel" 1241
+218 "Welsh springer spaniel" 1194
+219 "cocker spaniel, English cocker spaniel, cocker" 784
+220 "Sussex spaniel" 1189
+221 "Irish water spaniel" 1228
+222 "kuvasz" 1224
+223 "schipperke" 1269
+224 "groenendael" 1163
+225 "malinois" 1232
+226 "briard" 1218
+227 "kelpie" 1180
+228 "komondor" 1239
+229 "Old English sheepdog, bobtail" 1142
+230 "Shetland sheepdog, Shetland sheep dog, Shetland" 1258
+231 "collie" 1273
+232 "Border collie" 1230
+233 "Bouvier des Flandres, Bouviers des Flandres" 1229
+234 "Rottweiler" 1274
+235 "German shepherd, German shepherd dog, German police dog, alsatian" 999
+236 "Doberman, Doberman pinscher" 1251
+237 "miniature pinscher" 1267
+238 "Greater Swiss Mountain dog" 1244
+239 "Bernese mountain dog" 1205
+240 "Appenzeller" 1154
+241 "EntleBucher" 1153
+242 "boxer" 1221
+243 "bull mastiff" 1224
+244 "Tibetan mastiff" 1108
+245 "French bulldog" 1161
+246 "Great Dane" 1190
+247 "Saint Bernard, St Bernard" 1117
+248 "Eskimo dog, husky" 1263
+249 "malamute, malemute, Alaskan malamute" 1227
+250 "Siberian husky" 1099
+251 "dalmatian, coach dog, carriage dog" 1199
+252 "affenpinscher, monkey pinscher, monkey dog" 1217
+253 "basenji" 1113
+254 "pug, pug-dog" 1235
+255 "Leonberg" 1243
+256 "Newfoundland, Newfoundland dog" 1241
+257 "Great Pyrenees" 998
+258 "Samoyed, Samoyede" 1209
+259 "Pomeranian" 1248
+260 "chow, chow chow" 1268
+261 "keeshond" 1143
+262 "Brabancon griffon" 1178
+263 "Pembroke, Pembroke Welsh corgi" 1183
+264 "Cardigan, Cardigan Welsh corgi" 1220
+265 "toy poodle" 1266
+266 "miniature poodle" 1214
+267 "standard poodle" 1266
+268 "Mexican hairless" 1274
+269 "timber wolf, grey wolf, gray wolf, Canis lupus" 1148
+270 "white wolf, Arctic wolf, Canis lupus tundrarum" 977
+271 "red wolf, maned wolf, Canis rufus, Canis niger" 1199
+272 "coyote, prairie wolf, brush wolf, Canis latrans" 1113
+273 "dingo, warrigal, warragal, Canis dingo" 1252
+274 "dhole, Cuon alpinus" 1265
+275 "African hunting dog, hyena dog, Cape hunting dog, Lycaon pictus" 1208
+276 "hyena, hyaena" 1093
+277 "red fox, Vulpes vulpes" 1260
+278 "kit fox, Vulpes macrotis" 970
+279 "Arctic fox, white fox, Alopex lagopus" 1143
+280 "grey fox, gray fox, Urocyon cinereoargenteus" 1039
+281 "tabby, tabby cat" 1157
+282 "tiger cat" 1253
+283 "Persian cat" 1261
+284 "Siamese cat, Siamese" 1094
+285 "Egyptian cat" 1268
+286 "cougar, puma, catamount, mountain lion, painter, panther, Felis concolor" 1268
+287 "lynx, catamount" 1238
+288 "leopard, Panthera pardus" 1209
+289 "snow leopard, ounce, Panthera uncia" 1184
+290 "jaguar, panther, Panthera onca, Felis onca" 1209
+291 "lion, king of beasts, Panthera leo" 1227
+292 "tiger, Panthera tigris" 1227
+293 "cheetah, chetah, Acinonyx jubatus" 1261
+294 "brown bear, bruin, Ursus arctos" 1218
+295 "American black bear, black bear, Ursus americanus, Euarctos americanus" 1237
+296 "ice bear, polar bear, Ursus Maritimus, Thalarctos maritimus" 950
+297 "sloth bear, Melursus ursinus, Ursus ursinus" 1239
+298 "mongoose" 1269
+299 "meerkat, mierkat" 1238
+300 "tiger beetle" 1237
+301 "ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle" 1258
+302 "ground beetle, carabid beetle" 1072
+303 "long-horned beetle, longicorn, longicorn beetle" 1262
+304 "leaf beetle, chrysomelid" 714
+305 "dung beetle" 1234
+306 "rhinoceros beetle" 1261
+307 "weevil" 1270
+308 "fly" 1222
+309 "bee" 974
+310 "ant, emmet, pismire" 1213
+311 "grasshopper, hopper" 1161
+312 "cricket" 1230
+313 "walking stick, walkingstick, stick insect" 1229
+314 "cockroach, roach" 1193
+315 "mantis, mantid" 1137
+316 "cicada, cicala" 1243
+317 "leafhopper" 1264
+318 "lacewing, lacewing fly" 669
+319 "dragonfly, darning needle, devil's darning needle, sewing needle, snake feeder, snake doctor, mosquito hawk, skeeter hawk" 990
+320 "damselfly" 1110
+321 "admiral" 1166
+322 "ringlet, ringlet butterfly" 1261
+323 "monarch, monarch butterfly, milkweed butterfly, Danaus plexippus" 1201
+324 "cabbage butterfly" 1199
+325 "sulphur butterfly, sulfur butterfly" 1152
+326 "lycaenid, lycaenid butterfly" 1203
+327 "starfish, sea star" 948
+328 "sea urchin" 1272
+329 "sea cucumber, holothurian" 834
+330 "wood rabbit, cottontail, cottontail rabbit" 1238
+331 "hare" 1158
+332 "Angora, Angora rabbit" 1194
+333 "hamster" 159
+334 "porcupine, hedgehog" 1232
+335 "fox squirrel, eastern fox squirrel, Sciurus niger" 1171
+336 "marmot" 1147
+337 "beaver" 1273
+338 "guinea pig, Cavia cobaya" 1106
+339 "sorrel" 1263
+340 "zebra" 997
+341 "hog, pig, grunter, squealer, Sus scrofa" 1140
+342 "wild boar, boar, Sus scrofa" 1253
+343 "warthog" 1265
+344 "hippopotamus, hippo, river horse, Hippopotamus amphibius" 1250
+345 "ox" 1146
+346 "water buffalo, water ox, Asiatic buffalo, Bubalus bubalis" 1113
+347 "bison" 1082
+348 "ram, tup" 1131
+349 "bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky Mountain sheep, Ovis canadensis" 1264
+350 "ibex, Capra ibex" 1158
+351 "hartebeest" 1257
+352 "impala, Aepyceros melampus" 1086
+353 "gazelle" 1131
+354 "Arabian camel, dromedary, Camelus dromedarius" 1257
+355 "llama" 1124
+356 "weasel" 1275
+357 "mink" 1153
+358 "polecat, fitch, foulmart, foumart, Mustela putorius" 1269
+359 "black-footed ferret, ferret, Mustela nigripes" 1249
+360 "otter" 1231
+361 "skunk, polecat, wood pussy" 1137
+362 "badger" 1135
+363 "armadillo" 1111
+364 "three-toed sloth, ai, Bradypus tridactylus" 1260
+365 "orangutan, orang, orangutang, Pongo pygmaeus" 1122
+366 "gorilla, Gorilla gorilla" 1193
+367 "chimpanzee, chimp, Pan troglodytes" 1152
+368 "gibbon, Hylobates lar" 1184
+369 "siamang, Hylobates syndactylus, Symphalangus syndactylus" 1215
+370 "guenon, guenon monkey" 1231
+371 "patas, hussar monkey, Erythrocebus patas" 889
+372 "baboon" 931
+373 "macaque" 1197
+374 "langur" 1157
+375 "colobus, colobus monkey" 1048
+376 "proboscis monkey, Nasalis larvatus" 1268
+377 "marmoset" 1229
+378 "capuchin, ringtail, Cebus capucinus" 1143
+379 "howler monkey, howler" 1249
+380 "titi, titi monkey" 1207
+381 "spider monkey, Ateles geoffroyi" 1248
+382 "squirrel monkey, Saimiri sciureus" 1239
+383 "Madagascar cat, ring-tailed lemur, Lemur catta" 1215
+384 "indri, indris, Indri indri, Indri brevicaudatus" 1274
+385 "Indian elephant, Elephas maximus" 1274
+386 "African elephant, Loxodonta africana" 1195
+387 "lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens" 1049
+388 "giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca" 1109
+389 "barracouta, snoek" 1252
+390 "eel" 1172
+391 "coho, cohoe, coho salmon, blue jack, silver salmon, Oncorhynchus kisutch" 1184
+392 "rock beauty, Holocanthus tricolor" 1179
+393 "anemone fish" 1248
+394 "sturgeon" 1158
+395 "gar, garfish, garpike, billfish, Lepisosteus osseus" 1254
+396 "lionfish" 1115
+397 "puffer, pufferfish, blowfish, globefish" 1270
+398 "abacus" 908
+399 "abaya" 1246
+400 "academic gown, academic robe, judge's robe" 1249
+401 "accordion, piano accordion, squeeze box" 1217
+402 "acoustic guitar" 601
+403 "aircraft carrier, carrier, flattop, attack aircraft carrier" 1246
+404 "airliner" 1023
+405 "airship, dirigible" 1253
+406 "altar" 1197
+407 "ambulance" 1257
+408 "amphibian, amphibious vehicle" 1005
+409 "analog clock" 1267
+410 "apiary, bee house" 1258
+411 "apron" 1233
+412 "ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin" 1162
+413 "assault rifle, assault gun" 869
+414 "backpack, back pack, knapsack, packsack, rucksack, haversack" 1121
+415 "bakery, bakeshop, bakehouse" 1156
+416 "balance beam, beam" 1235
+417 "balloon" 227
+418 "ballpoint, ballpoint pen, ballpen, Biro" 1169
+419 "Band Aid" 1096
+420 "banjo" 1212
+421 "bannister, banister, balustrade, balusters, handrail" 1228
+422 "barbell" 1239
+423 "barber chair" 1130
+424 "barbershop" 1270
+425 "barn" 1233
+426 "barometer" 1171
+427 "barrel, cask" 1248
+428 "barrow, garden cart, lawn cart, wheelbarrow" 1211
+429 "baseball" 1246
+430 "basketball" 1242
+431 "bassinet" 1270
+432 "bassoon" 1250
+433 "bathing cap, swimming cap" 1198
+434 "bath towel" 1264
+435 "bathtub, bathing tub, bath, tub" 1123
+436 "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon" 1266
+437 "beacon, lighthouse, beacon light, pharos" 1139
+438 "beaker" 1270
+439 "bearskin, busby, shako" 1222
+440 "beer bottle" 1255
+441 "beer glass" 1128
+442 "bell cote, bell cot" 1115
+443 "bib" 1168
+444 "bicycle-built-for-two, tandem bicycle, tandem" 800
+445 "bikini, two-piece" 1189
+446 "binder, ring-binder" 1237
+447 "binoculars, field glasses, opera glasses" 1167
+448 "birdhouse" 1258
+449 "boathouse" 1044
+450 "bobsled, bobsleigh, bob" 1232
+451 "bolo tie, bolo, bola tie, bola" 1143
+452 "bonnet, poke bonnet" 1232
+453 "bookcase" 1133
+454 "bookshop, bookstore, bookstall" 769
+455 "bottlecap" 1263
+456 "bow" 1194
+457 "bow tie, bow-tie, bowtie" 1247
+458 "brass, memorial tablet, plaque" 1236
+459 "brassiere, bra, bandeau" 1244
+460 "breakwater, groin, groyne, mole, bulwark, seawall, jetty" 947
+461 "breastplate, aegis, egis" 1261
+462 "broom" 1232
+463 "bucket, pail" 1265
+464 "buckle" 1056
+465 "bulletproof vest" 1172
+466 "bullet train, bullet" 1128
+467 "butcher shop, meat market" 1264
+468 "cab, hack, taxi, taxicab" 1094
+469 "caldron, cauldron" 1166
+470 "candle, taper, wax light" 1249
+471 "cannon" 1198
+472 "canoe" 1155
+473 "can opener, tin opener" 1125
+474 "cardigan" 1221
+475 "car mirror" 1094
+476 "carousel, carrousel, merry-go-round, roundabout, whirligig" 1092
+477 "carpenter's kit, tool kit" 1146
+478 "carton" 1255
+479 "car wheel" 1159
+480 "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM" 992
+481 "cassette" 1241
+482 "cassette player" 1272
+483 "castle" 1248
+484 "catamaran" 1239
+485 "CD player" 934
+486 "cello, violoncello" 1153
+487 "cellular telephone, cellular phone, cellphone, cell, mobile phone" 1048
+488 "chain" 1157
+489 "chainlink fence" 1199
+490 "chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour" 628
+491 "chain saw, chainsaw" 1274
+492 "chest" 1126
+493 "chiffonier, commode" 1077
+494 "chime, bell, gong" 1232
+495 "china cabinet, china closet" 1214
+496 "Christmas stocking" 1102
+497 "church, church building" 1235
+498 "cinema, movie theater, movie theatre, movie house, picture palace" 1274
+499 "cleaver, meat cleaver, chopper" 1258
+500 "cliff dwelling" 1195
+501 "cloak" 1178
+502 "clog, geta, patten, sabot" 1236
+503 "cocktail shaker" 1175
+504 "coffee mug" 1236
+505 "coffeepot" 1226
+506 "coil, spiral, volute, whorl, helix" 1238
+507 "combination lock" 1260
+508 "computer keyboard, keypad" 1158
+509 "confectionery, confectionary, candy store" 1060
+510 "container ship, containership, container vessel" 1198
+511 "convertible" 1236
+512 "corkscrew, bottle screw" 1237
+513 "cornet, horn, trumpet, trump" 1205
+514 "cowboy boot" 1272
+515 "cowboy hat, ten-gallon hat" 1138
+516 "cradle" 1198
+517 "crane" 1242
+518 "crash helmet" 1049
+519 "crate" 661
+520 "crib, cot" 1118
+521 "Crock Pot" 1218
+522 "croquet ball" 1146
+523 "crutch" 1272
+524 "cuirass" 1209
+525 "dam, dike, dyke" 1239
+526 "desk" 1194
+527 "desktop computer" 1225
+528 "dial telephone, dial phone" 1164
+529 "diaper, nappy, napkin" 1245
+530 "digital clock" 1186
+531 "digital watch" 1180
+532 "dining table, board" 950
+533 "dishrag, dishcloth" 1226
+534 "dishwasher, dish washer, dishwashing machine" 1193
+535 "disk brake, disc brake" 1137
+536 "dock, dockage, docking facility" 1170
+537 "dogsled, dog sled, dog sleigh" 1089
+538 "dome" 1274
+539 "doormat, welcome mat" 1232
+540 "drilling platform, offshore rig" 1127
+541 "drum, membranophone, tympan" 1196
+542 "drumstick" 1264
+543 "dumbbell" 1225
+544 "Dutch oven" 1270
+545 "electric fan, blower" 858
+546 "electric guitar" 1188
+547 "electric locomotive" 1255
+548 "entertainment center" 773
+549 "envelope" 1112
+550 "espresso maker" 1176
+551 "face powder" 1197
+552 "feather boa, boa" 1210
+553 "file, file cabinet, filing cabinet" 1233
+554 "fireboat" 898
+555 "fire engine, fire truck" 1132
+556 "fire screen, fireguard" 1270
+557 "flagpole, flagstaff" 1116
+558 "flute, transverse flute" 1250
+559 "folding chair" 970
+560 "football helmet" 899
+561 "forklift" 1106
+562 "fountain" 1188
+563 "fountain pen" 1193
+564 "four-poster" 1012
+565 "freight car" 1078
+566 "French horn, horn" 107
+567 "frying pan, frypan, skillet" 1170
+568 "fur coat" 1272
+569 "garbage truck, dustcart" 1155
+570 "gasmask, respirator, gas helmet" 1229
+571 "gas pump, gasoline pump, petrol pump, island dispenser" 940
+572 "goblet" 1243
+573 "go-kart" 1071
+574 "golf ball" 1209
+575 "golfcart, golf cart" 1266
+576 "gondola" 1266
+577 "gong, tam-tam" 1234
+578 "gown" 1028
+579 "grand piano, grand" 1266
+580 "greenhouse, nursery, glasshouse" 1041
+581 "grille, radiator grille" 1222
+582 "grocery store, grocery, food market, market" 1258
+583 "guillotine" 1168
+584 "hair slide" 1258
+585 "hair spray" 1179
+586 "half track" 1150
+587 "hammer" 1002
+588 "hamper" 1262
+589 "hand blower, blow dryer, blow drier, hair dryer, hair drier" 1060
+590 "hand-held computer, hand-held microcomputer" 1259
+591 "handkerchief, hankie, hanky, hankey" 1027
+592 "hard disc, hard disk, fixed disk" 1241
+593 "harmonica, mouth organ, harp, mouth harp" 988
+594 "harp" 963
+595 "harvester, reaper" 1101
+596 "hatchet" 1244
+597 "holster" 975
+598 "home theater, home theatre" 1248
+599 "honeycomb" 1215
+600 "hook, claw" 1111
+601 "hoopskirt, crinoline" 597
+602 "horizontal bar, high bar" 1182
+603 "horse cart, horse-cart" 904
+604 "hourglass" 1155
+605 "iPod" 1241
+606 "iron, smoothing iron" 1272
+607 "jack-o'-lantern" 1252
+608 "jean, blue jean, denim" 982
+609 "jeep, landrover" 1148
+610 "jersey, T-shirt, tee shirt" 1237
+611 "jigsaw puzzle" 1211
+612 "jinrikisha, ricksha, rickshaw" 1200
+613 "joystick" 867
+614 "kimono" 1261
+615 "knee pad" 1255
+616 "knot" 926
+617 "lab coat, laboratory coat" 1160
+618 "ladle" 1208
+619 "lampshade, lamp shade" 1194
+620 "laptop, laptop computer" 1230
+621 "lawn mower, mower" 1204
+622 "lens cap, lens cover" 1208
+623 "letter opener, paper knife, paperknife" 1178
+624 "library" 970
+625 "lifeboat" 1259
+626 "lighter, light, igniter, ignitor" 1254
+627 "limousine, limo" 1161
+628 "liner, ocean liner" 1140
+629 "lipstick, lip rouge" 1205
+630 "Loafer" 1217
+631 "lotion" 1223
+632 "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system" 1270
+633 "loupe, jeweler's loupe" 1270
+634 "lumbermill, sawmill" 1249
+635 "magnetic compass" 1174
+636 "mailbag, postbag" 1226
+637 "mailbox, letter box" 1180
+638 "maillot" 1190
+639 "maillot, tank suit" 1216
+640 "manhole cover" 1192
+641 "maraca" 1246
+642 "marimba, xylophone" 1190
+643 "mask" 1244
+644 "matchstick" 1195
+645 "maypole" 1198
+646 "maze, labyrinth" 1274
+647 "measuring cup" 1216
+648 "medicine chest, medicine cabinet" 1194
+649 "megalith, megalithic structure" 1251
+650 "microphone, mike" 1274
+651 "microwave, microwave oven" 1250
+652 "military uniform" 1076
+653 "milk can" 1253
+654 "minibus" 1071
+655 "miniskirt, mini" 1165
+656 "minivan" 1256
+657 "missile" 1208
+658 "mitten" 1027
+659 "mixing bowl" 1225
+660 "mobile home, manufactured home" 1270
+661 "Model T" 1247
+662 "modem" 1176
+663 "monastery" 1242
+664 "monitor" 1234
+665 "moped" 984
+666 "mortar" 1254
+667 "mortarboard" 1152
+668 "mosque" 1110
+669 "mosquito net" 1265
+670 "motor scooter, scooter" 1214
+671 "mountain bike, all-terrain bike, off-roader" 1150
+672 "mountain tent" 1142
+673 "mouse, computer mouse" 1252
+674 "mousetrap" 34
+675 "moving van" 1173
+676 "muzzle" 1217
+677 "nail" 1205
+678 "neck brace" 1172
+679 "necklace" 1113
+680 "nipple" 1219
+681 "notebook, notebook computer" 1254
+682 "obelisk" 1197
+683 "oboe, hautboy, hautbois" 1203
+684 "ocarina, sweet potato" 1238
+685 "odometer, hodometer, mileometer, milometer" 1167
+686 "oil filter" 1177
+687 "organ, pipe organ" 1016
+688 "oscilloscope, scope, cathode-ray oscilloscope, CRO" 1221
+689 "overskirt" 1264
+690 "oxcart" 1231
+691 "oxygen mask" 1251
+692 "packet" 1247
+693 "paddle, boat paddle" 1247
+694 "paddlewheel, paddle wheel" 799
+695 "padlock" 1251
+696 "paintbrush" 1235
+697 "pajama, pyjama, pj's, jammies" 1256
+698 "palace" 1242
+699 "panpipe, pandean pipe, syrinx" 1115
+700 "paper towel" 1198
+701 "parachute, chute" 1244
+702 "parallel bars, bars" 1265
+703 "park bench" 1220
+704 "parking meter" 1218
+705 "passenger car, coach, carriage" 1208
+706 "patio, terrace" 1207
+707 "pay-phone, pay-station" 1255
+708 "pedestal, plinth, footstall" 1272
+709 "pencil box, pencil case" 1098
+710 "pencil sharpener" 1181
+711 "perfume, essence" 997
+712 "Petri dish" 1179
+713 "photocopier" 983
+714 "pick, plectrum, plectron" 1252
+715 "pickelhaube" 1086
+716 "picket fence, paling" 1254
+717 "pickup, pickup truck" 1139
+718 "pier" 1266
+719 "piggy bank, penny bank" 1202
+720 "pill bottle" 1267
+721 "pillow" 1213
+722 "ping-pong ball" 1198
+723 "pinwheel" 1217
+724 "pirate, pirate ship" 1177
+725 "pitcher, ewer" 826
+726 "plane, carpenter's plane, woodworking plane" 1274
+727 "planetarium" 1258
+728 "plastic bag" 1214
+729 "plate rack" 1187
+730 "plow, plough" 1272
+731 "plunger, plumber's helper" 1269
+732 "Polaroid camera, Polaroid Land camera" 1149
+733 "pole" 1143
+734 "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria" 1240
+735 "poncho" 1214
+736 "pool table, billiard table, snooker table" 1255
+737 "pop bottle, soda bottle" 808
+738 "pot, flowerpot" 1271
+739 "potter's wheel" 1097
+740 "power drill" 1248
+741 "prayer rug, prayer mat" 1266
+742 "printer" 1237
+743 "prison, prison house" 981
+744 "projectile, missile" 1224
+745 "projector" 1240
+746 "puck, hockey puck" 888
+747 "punching bag, punch bag, punching ball, punchball" 1275
+748 "purse" 1260
+749 "quill, quill pen" 1249
+750 "quilt, comforter, comfort, puff" 1248
+751 "racer, race car, racing car" 1197
+752 "racket, racquet" 1086
+753 "radiator" 1199
+754 "radio, wireless" 1200
+755 "radio telescope, radio reflector" 493
+756 "rain barrel" 1273
+757 "recreational vehicle, RV, R.V." 1143
+758 "reel" 1230
+759 "reflex camera" 1271
+760 "refrigerator, icebox" 1147
+761 "remote control, remote" 1246
+762 "restaurant, eating house, eating place, eatery" 1106
+763 "revolver, six-gun, six-shooter" 965
+764 "rifle" 1245
+765 "rocking chair, rocker" 990
+766 "rotisserie" 1271
+767 "rubber eraser, rubber, pencil eraser" 1017
+768 "rugby ball" 1116
+769 "rule, ruler" 1194
+770 "running shoe" 1151
+771 "safe" 1260
+772 "safety pin" 1227
+773 "saltshaker, salt shaker" 1105
+774 "sandal" 1237
+775 "sarong" 505
+776 "sax, saxophone" 1269
+777 "scabbard" 1226
+778 "scale, weighing machine" 1268
+779 "school bus" 1143
+780 "schooner" 1249
+781 "scoreboard" 1193
+782 "screen, CRT screen" 1248
+783 "screw" 1051
+784 "screwdriver" 1184
+785 "seat belt, seatbelt" 1119
+786 "sewing machine" 1154
+787 "shield, buckler" 1009
+788 "shoe shop, shoe-shop, shoe store" 1059
+789 "shoji" 1253
+790 "shopping basket" 1252
+791 "shopping cart" 1244
+792 "shovel" 1266
+793 "shower cap" 1195
+794 "shower curtain" 1083
+795 "ski" 1198
+796 "ski mask" 1204
+797 "sleeping bag" 1265
+798 "slide rule, slipstick" 1217
+799 "sliding door" 1150
+800 "slot, one-armed bandit" 1269
+801 "snorkel" 1195
+802 "snowmobile" 1146
+803 "snowplow, snowplough" 1069
+804 "soap dispenser" 1259
+805 "soccer ball" 952
+806 "sock" 978
+807 "solar dish, solar collector, solar furnace" 1075
+808 "sombrero" 1259
+809 "soup bowl" 1227
+810 "space bar" 1178
+811 "space heater" 1187
+812 "space shuttle" 1169
+813 "spatula" 1261
+814 "speedboat" 1239
+815 "spider web, spider's web" 1263
+816 "spindle" 1062
+817 "sports car, sport car" 1152
+818 "spotlight, spot" 1038
+819 "stage" 1092
+820 "steam locomotive" 1114
+821 "steel arch bridge" 1175
+822 "steel drum" 1234
+823 "stethoscope" 1273
+824 "stole" 1091
+825 "stone wall" 1260
+826 "stopwatch, stop watch" 1207
+827 "stove" 1033
+828 "strainer" 1051
+829 "streetcar, tram, tramcar, trolley, trolley car" 1245
+830 "stretcher" 937
+831 "studio couch, day bed" 1185
+832 "stupa, tope" 1134
+833 "submarine, pigboat, sub, U-boat" 1223
+834 "suit, suit of clothes" 995
+835 "sundial" 1237
+836 "sunglass" 1220
+837 "sunglasses, dark glasses, shades" 1196
+838 "sunscreen, sunblock, sun blocker" 1216
+839 "suspension bridge" 1252
+840 "swab, swob, mop" 1263
+841 "sweatshirt" 1236
+842 "swimming trunks, bathing trunks" 1262
+843 "swing" 1241
+844 "switch, electric switch, electrical switch" 1105
+845 "syringe" 1255
+846 "table lamp" 1220
+847 "tank, army tank, armored combat vehicle, armoured combat vehicle" 1146
+848 "tape player" 1272
+849 "teapot" 1226
+850 "teddy, teddy bear" 1234
+851 "television, television system" 1249
+852 "tennis ball" 1263
+853 "thatch, thatched roof" 1270
+854 "theater curtain, theatre curtain" 1271
+855 "thimble" 1137
+856 "thresher, thrasher, threshing machine" 1166
+857 "throne" 1179
+858 "tile roof" 1123
+859 "toaster" 1210
+860 "tobacco shop, tobacconist shop, tobacconist" 1274
+861 "toilet seat" 1205
+862 "torch" 1088
+863 "totem pole" 1216
+864 "tow truck, tow car, wrecker" 1215
+865 "toyshop" 1275
+866 "tractor" 1272
+867 "trailer truck, tractor trailer, trucking rig, rig, articulated lorry, semi" 1271
+868 "tray" 1249
+869 "trench coat" 1265
+870 "tricycle, trike, velocipede" 638
+871 "trimaran" 1249
+872 "tripod" 1173
+873 "triumphal arch" 1269
+874 "trolleybus, trolley coach, trackless trolley" 1211
+875 "trombone" 821
+876 "tub, vat" 1042
+877 "turnstile" 1261
+878 "typewriter keyboard" 1249
+879 "umbrella" 1146
+880 "unicycle, monocycle" 1028
+881 "upright, upright piano" 1255
+882 "vacuum, vacuum cleaner" 824
+883 "vase" 1265
+884 "vault" 1200
+885 "velvet" 1178
+886 "vending machine" 1006
+887 "vestment" 1274
+888 "viaduct" 1248
+889 "violin, fiddle" 1230
+890 "volleyball" 1140
+891 "waffle iron" 1176
+892 "wall clock" 1168
+893 "wallet, billfold, notecase, pocketbook" 1147
+894 "wardrobe, closet, press" 1252
+895 "warplane, military plane" 1098
+896 "washbasin, handbasin, washbowl, lavabo, wash-hand basin" 1110
+897 "washer, automatic washer, washing machine" 1204
+898 "water bottle" 1107
+899 "water jug" 1008
+900 "water tower" 1260
+901 "whiskey jug" 1178
+902 "whistle" 1250
+903 "wig" 1142
+904 "window screen" 1130
+905 "window shade" 1164
+906 "Windsor tie" 1170
+907 "wine bottle" 1064
+908 "wing" 1238
+909 "wok" 1241
+910 "wooden spoon" 1164
+911 "wool, woolen, woollen" 1264
+912 "worm fence, snake fence, snake-rail fence, Virginia fence" 1267
+913 "wreck" 1065
+914 "yawl" 1195
+915 "yurt" 1125
+916 "web site, website, internet site, site" 1261
+917 "comic book" 1273
+918 "crossword puzzle, crossword" 1244
+919 "street sign" 1214
+920 "traffic light, traffic signal, stoplight" 957
+921 "book jacket, dust cover, dust jacket, dust wrapper" 1258
+922 "menu" 996
+923 "plate" 1108
+924 "guacamole" 882
+925 "consomme" 1170
+926 "hot pot, hotpot" 1224
+927 "trifle" 1255
+928 "ice cream, icecream" 1227
+929 "ice lolly, lolly, lollipop, popsicle" 746
+930 "French loaf" 1237
+931 "bagel, beigel" 1242
+932 "pretzel" 1254
+933 "cheeseburger" 862
+934 "hotdog, hot dog, red hot" 1139
+935 "mashed potato" 1273
+936 "head cabbage" 1244
+937 "broccoli" 1225
+938 "cauliflower" 1260
+939 "zucchini, courgette" 1217
+940 "spaghetti squash" 1235
+941 "acorn squash" 1262
+942 "butternut squash" 1200
+943 "cucumber, cuke" 1213
+944 "artichoke, globe artichoke" 1129
+945 "bell pepper" 1186
+946 "cardoon" 1177
+947 "mushroom" 996
+948 "Granny Smith" 1100
+949 "strawberry" 1257
+950 "orange" 1105
+951 "lemon" 808
+952 "fig" 1147
+953 "pineapple, ananas" 1181
+954 "banana" 1209
+955 "jackfruit, jak, jack" 1213
+956 "custard apple" 1200
+957 "pomegranate" 1248
+958 "hay" 1167
+959 "carbonara" 1263
+960 "chocolate sauce, chocolate syrup" 1223
+961 "dough" 1108
+962 "meat loaf, meatloaf" 1263
+963 "pizza, pizza pie" 1261
+964 "potpie" 1187
+965 "burrito" 1156
+966 "red wine" 1257
+967 "espresso" 1225
+968 "cup" 1022
+969 "eggnog" 1172
+970 "alp" 1208
+971 "bubble" 1247
+972 "cliff, drop, drop-off" 1115
+973 "coral reef" 1185
+974 "geyser" 1228
+975 "lakeside, lakeshore" 1235
+976 "promontory, headland, head, foreland" 655
+977 "sandbar, sand bar" 1207
+978 "seashore, coast, seacoast, sea-coast" 1063
+979 "valley, vale" 1182
+980 "volcano" 1235
+981 "ballplayer, baseball player" 1246
+982 "groom, bridegroom" 1239
+983 "scuba diver" 1241
+984 "rapeseed" 566
+985 "daisy" 1137
+986 "yellow lady's slipper, yellow lady-slipper, Cypripedium calceolus, Cypripedium parviflorum" 1139
+987 "corn" 1047
+988 "acorn" 1161
+989 "hip, rose hip, rosehip" 1217
+990 "buckeye, horse chestnut, conker" 1044
+991 "coral fungus" 1130
+992 "agaric" 1261
+993 "gyromitra" 1265
+994 "stinkhorn, carrion fungus" 1245
+995 "earthstar" 1113
+996 "hen-of-the-woods, hen of the woods, Polyporus frondosus, Grifola frondosa" 1261
+997 "bolete" 1255
+998 "ear, spike, capitulum" 1259
+999 "toilet tissue, toilet paper, bathroom tissue" 1259

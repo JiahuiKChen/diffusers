@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="accelerate"
+    group="a40-dropout"
 )
 
 # MIDI BOXES
@@ -25,10 +25,10 @@ wandb.init(
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # A40 
-PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_959.txt"
+PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_191.txt"
 TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-OUTPUT_DIR = "/datastor1/jiahuikchen/rand_img_cond"
+OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -122,10 +122,10 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
                 gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
 # Gen images conditioned on 1 randomly selected image with the same class 
-gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
+# gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
 
 # Gen images conditioned on mixup-ed random pairs with the same class 
-# gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
+gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
                 
 # Gen images conditioned on cutmix-ed random paris with same class
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
