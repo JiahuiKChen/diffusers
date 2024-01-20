@@ -1,6 +1,6 @@
 import os 
-# os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
-os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
+os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
+# os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 import random
 import wandb
@@ -17,18 +17,18 @@ wandb.init(
 )
 
 # MIDI BOXES
-# PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_735.txt"
-# TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
-# TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
-# OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/mixup"
+PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_238.txt"
+TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
+TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
+OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/dropout"
 # testing output dir
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # A40 
-PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_191.txt"
-TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
-TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
+# PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_191.txt"
+# TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
+# TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
+# OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
