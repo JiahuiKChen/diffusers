@@ -1,5 +1,5 @@
 import os 
-os.environ['HF_HOME'] = '/home/jc98685/hf_cache' # MIDI Boxes
+os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # MIDI Boxes
 # os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 import random
