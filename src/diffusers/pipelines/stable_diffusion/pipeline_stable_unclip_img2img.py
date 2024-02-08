@@ -826,9 +826,12 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
                 # implementation from https://github.com/facebookresearch/mixup-cifar10/blob/main/train.py#L119
                 image_embeds = lam * img_1_embeds + (1 - lam) * img_2_embeds
             elif embed_cutmix:
-                # TODO
-                lam = np.random.beta(1.0, 1.0)
-
+                # implementation inspired by https://keras.io/examples/vision/cutmix/#define-the-cutmix-data-augmentation-function 
+                cut_ratio = 1 - lam
+                # get the amount of indices of the embedding to replace 
+                cut_ind = int(cut_ratio * img_1_embeds.size()[0]) 
+                # replace embedding 1 with embedding 2, up to the randomly selected indices
+                image_embeds = torch.cat((img_2_embeds[:cut_ind], img_1_embeds[cut_ind:]), 0)
 
         # dropout on image embeddings if specified
         if dropout:
