@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="embed_mixup_30subset",
+    group="embed_cutmix_30subset",
 )
 
 # MIDI BOXES
@@ -28,7 +28,7 @@ wandb.init(
 PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_30subset.txt"
 TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_30subset"
+OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_cutmix_30subset"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -147,7 +147,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
 # gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
                 
 # Gen images conditioned on embedding-space cutmix
-# TODO
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
                 
 # Gen images conditioned on embedding-space mixup  
-gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
