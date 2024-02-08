@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import inspect
+import numpy as np
 from typing import Any, Callable, Dict, List, Optional, Union
 
 import PIL.Image
@@ -645,8 +646,13 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
         noise_level: int = 0,
         image_embeds: Optional[torch.FloatTensor] = None,
         clip_skip: Optional[int] = None,
+        # added for LT generations
         dropout: Optional[bool] = False,
         dropout_prob: Optional[float] = 0.4,
+        embed_cutmix: Optional[bool] = False,
+        embed_mixup: Optional[bool] = False,
+        img_1: Optional[PIL.Image.Image] = None,
+        img_2: Optional[PIL.Image.Image] = None,
     ):
         r"""
         The call function to the pipeline for generation.
@@ -779,17 +785,50 @@ class StableUnCLIPImg2ImgPipeline(DiffusionPipeline, TextualInversionLoaderMixin
             prompt_embeds = torch.cat([negative_prompt_embeds, prompt_embeds])
 
         # 4. Encoder input image
-        noise_level = torch.tensor([noise_level], device=device)
-        image_embeds = self._encode_image(
-            image=image,
-            device=device,
-            batch_size=batch_size,
-            num_images_per_prompt=num_images_per_prompt,
-            do_classifier_free_guidance=do_classifier_free_guidance,
-            noise_level=noise_level,
-            generator=generator,
-            image_embeds=image_embeds,
-        )
+        # if not using embedding level cutmix or mixup, encode input conditioning image
+        if not embed_cutmix and not embed_mixup:
+            noise_level = torch.tensor([noise_level], device=device)
+            image_embeds = self._encode_image(
+                image=image,
+                device=device,
+                batch_size=batch_size,
+                num_images_per_prompt=num_images_per_prompt,
+                do_classifier_free_guidance=do_classifier_free_guidance,
+                noise_level=noise_level,
+                generator=generator,
+                image_embeds=image_embeds,
+            )
+        # if using embedding level cutmix or mixup, encode images used to do these 
+        # then perform mixup or cutmix
+        else:
+            img_1_embeds = self._encode_image(
+                image=img_1,
+                device=device,
+                batch_size=batch_size,
+                num_images_per_prompt=num_images_per_prompt,
+                do_classifier_free_guidance=do_classifier_free_guidance,
+                noise_level=noise_level,
+                generator=generator,
+                image_embeds=image_embeds,
+            )
+            img_2_embeds = self._encode_image(
+                image=img_2,
+                device=device,
+                batch_size=batch_size,
+                num_images_per_prompt=num_images_per_prompt,
+                do_classifier_free_guidance=do_classifier_free_guidance,
+                noise_level=noise_level,
+                generator=generator,
+                image_embeds=image_embeds,
+            )
+            lam = np.random.beta(1.0, 1.0)
+            if embed_mixup:
+                # implementation from https://github.com/facebookresearch/mixup-cifar10/blob/main/train.py#L119
+                image_embeds = lam * img_1_embeds + (1 - lam) * img_2_embeds
+            elif embed_cutmix:
+                # TODO
+                lam = np.random.beta(1.0, 1.0)
+
 
         # dropout on image embeddings if specified
         if dropout:

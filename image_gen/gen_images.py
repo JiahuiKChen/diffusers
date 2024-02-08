@@ -86,7 +86,6 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
     return v2.functional.to_pil_image(cond_img)
 
 
-# randomly select one train data image per class to condition generative model on
 def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
     # for each class, generate synthetic images with text label as prompt and randomly selected class image 
     with open(PROMPT_FILE) as gen_file:
@@ -131,4 +130,8 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
                 
 # Gen images conditioned on randomly selected images with same class, with dropout applied
-gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
+                
+# Gen images conditioned on embedding-space cutmix
+                
+# Gen images conditioned on embedding-space mixup               
