@@ -44,28 +44,33 @@ img_txt_pipe.to("cuda:0")
 
 
 ############################## EMBEDDING SPACE CUTMIX/MIXUP 
-img_1 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/bufo.jpeg")
-img_2 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/gen_bufo.jpg")
+# MIDI img paths
+# img_1 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/bufo.jpeg")
+# img_2 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/gen_bufo.jpg")
+
+# A40 img paths
+img_1 = load_image("/datastor1/jiahuikchen/diffusers/image_gen/tests/bufo.jpeg")
+img_2 = load_image("/datastor1/jiahuikchen/diffusers/image_gen/tests/gen_bufo.jpg")
 
 # embedding mixup
-gen_image = img_txt_pipe(
-    img_2, 
-    "worried frog", 
-    num_images_per_prompt=4,
-    dropout=False, 
-    embed_cutmix=False, 
-    embed_mixup=True,
-    img_1 = img_1,
-    img_2 = img_2
-).images
-for i in range(len(gen_image)):
-    img = gen_image[i]
-    img.save(f"embed_mixup_gen_test_{i}.jpg")
+# gen_image = img_txt_pipe(
+#     img_2, 
+#     "worried frog", 
+#     num_images_per_prompt=4,
+#     dropout=False, 
+#     embed_cutmix=False, 
+#     embed_mixup=True,
+#     img_1 = img_1,
+#     img_2 = img_2
+# ).images
+# for i in range(len(gen_image)):
+#     img = gen_image[i]
+#     img.save(f"embed_mixup_gen_test_{i}.jpg")
 
 # embedding cutmix 
 gen_image = img_txt_pipe(
     img_2, 
-    "worried frog", 
+    "cartoon frog", 
     num_images_per_prompt=1,
     dropout=False, 
     embed_cutmix=True, 
@@ -73,3 +78,4 @@ gen_image = img_txt_pipe(
     img_1 = img_1,
     img_2 = img_2
 ).images[0]
+gen_image.save("embed_cutmix.jpg")
