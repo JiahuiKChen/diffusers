@@ -1,0 +1,30 @@
+15 "robin, American robin, Turdus migratorius" 1273
+38 "banded gecko" 1266
+55 "green snake, grass snake" 1123
+108 "sea anemone, anemone" 1152
+273 "dingo, warrigal, warragal, Canis dingo" 1252
+313 "walking stick, walkingstick, stick insect" 1229
+344 "hippopotamus, hippo, river horse, Hippopotamus amphibius" 1250
+355 "llama" 1124
+377 "marmoset" 1229
+397 "puffer, pufferfish, blowfish, globefish" 1270
+460 "breakwater, groin, groyne, mole, bulwark, seawall, jetty" 947
+486 "cello, violoncello" 1153
+498 "cinema, movie theater, movie theatre, movie house, picture palace" 1274
+515 "cowboy hat, ten-gallon hat" 1138
+540 "drilling platform, offshore rig" 1127
+568 "fur coat" 1272
+578 "gown" 1028
+579 "grand piano, grand" 1266
+606 "iron, smoothing iron" 1272
+703 "park bench" 1220
+718 "pier" 1266
+750 "quilt, comforter, comfort, puff" 1248
+770 "running shoe" 1151
+795 "ski" 1198
+838 "sunscreen, sunblock, sun blocker" 1216
+916 "web site, website, internet site, site" 1261
+959 "carbonara" 1263
+965 "burrito" 1156
+981 "ballplayer, baseball player" 1246
+983 "scuba diver" 1241

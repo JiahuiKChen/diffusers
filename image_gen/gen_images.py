@@ -13,22 +13,22 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="a40-dropout"
+    group="embed_mixup_30subset",
 )
 
 # MIDI BOXES
-PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_589.txt"
-TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
-TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
-OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/dropout"
+# PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_589.txt"
+# TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
+# TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
+# OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/ImageNetLT/dropout"
 # testing output dir
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # A40 
-# PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_191.txt"
-# TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
-# TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-# OUTPUT_DIR = "/datastor1/jiahuikchen/dropout"
+PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_30subset.txt"
+TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
+TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
+OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_30subset"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -86,7 +86,7 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
     return v2.functional.to_pil_image(cond_img)
 
 
-def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
+def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=False):
     # for each class, generate synthetic images with text label as prompt and randomly selected class image 
     with open(PROMPT_FILE) as gen_file:
         # each line of this file contains the label (text label is the prompt) and how many images need to be generated
@@ -106,6 +106,10 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
             all_cond_imgs = [cutmix_or_mixup(int_label, use_cutmix=True, use_mixup=False) for i in range(gen_count)]
         elif use_mixup:
             all_cond_imgs = [cutmix_or_mixup(int_label, use_cutmix=False, use_mixup=True) for i in range(gen_count)]
+        elif use_embed_mixup or use_embed_cutmix:
+            # if doing embedding level mixup or cutmix, pass in tuples of 2 images 
+            # that the model will encode and do mixup or cutmix on the CLIP image embeddings 
+            all_cond_imgs = [(get_rand_img(int_label), get_rand_img(int_label)) for i in range(gen_count)]
         else:
             # randomly selecting an image from the same training class to generate conditioning image
             all_cond_imgs = [get_rand_img(int_label) for i in range(gen_count)]
@@ -116,7 +120,17 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
             prompts = prompt_imgs["prompts"]; cond_imgs = prompt_imgs["cond_imgs"]; indices = prompt_imgs["indices"] 
             for i in range(len(prompts)):
                 print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
-                gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
+                if not use_embed_cutmix and not use_embed_mixup:
+                    gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
+                else:
+                    gen_image = img_txt_pipe(cond_imgs[i][0], 
+                                                prompts[i], 
+                                                dropout=dropout,
+                                                embed_cutmix=use_embed_cutmix,
+                                                embed_mixup=use_embed_mixup,
+                                                img_1=cond_imgs[i][0],
+                                                img_2=cond_imgs[i][1]
+                                             ).images[0]  
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
                 gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
 
@@ -133,5 +147,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False):
 # gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
                 
 # Gen images conditioned on embedding-space cutmix
+# TODO
                 
-# Gen images conditioned on embedding-space mixup               
+# Gen images conditioned on embedding-space mixup  
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
