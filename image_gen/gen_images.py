@@ -1,6 +1,6 @@
 import os 
-os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # MIDI Boxes
-# os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
+# os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # MIDI Boxes
+os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 import random
 import wandb
@@ -25,7 +25,7 @@ wandb.init(
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # A40 
-PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_30subset.txt"
+PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_30subset.txt"
 TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
 OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_30subset"
