@@ -1,0 +1,30 @@
+50 "American alligator, Alligator mississipiensis" 904
+67 "diamondback, diamondback rattlesnake, Crotalus adamanteus" 983
+107 "jellyfish" 1147
+148 "killer whale, killer, orca, grampus, sea wolf, Orcinus orca" 1091
+207 "golden retriever" 1161
+244 "Tibetan mastiff" 1108
+302 "ground beetle, carabid beetle" 1072
+333 "hamster" 159
+345 "ox" 1146
+367 "chimpanzee, chimp, Pan troglodytes" 1152
+414 "backpack, back pack, knapsack, packsack, rucksack, haversack" 1121
+417 "balloon" 227
+441 "beer glass" 1128
+449 "boathouse" 1044
+466 "bullet train, bullet" 1128
+509 "confectionery, confectionary, candy store" 1060
+519 "crate" 661
+532 "dining table, board" 950
+548 "entertainment center" 773
+555 "fire engine, fire truck" 1132
+578 "gown" 1028
+608 "jean, blue jean, denim" 982
+652 "military uniform" 1076
+658 "mitten" 1027
+679 "necklace" 1113
+898 "water bottle" 1107
+924 "guacamole" 882
+929 "ice lolly, lolly, lollipop, popsicle" 746
+934 "hotdog, hot dog, red hot" 1139
+987 "corn" 1047
