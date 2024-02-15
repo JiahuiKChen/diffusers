@@ -1,0 +1,90 @@
+6 "stingray" 1233
+15 "robin, American robin, Turdus migratorius" 1273
+22 "bald eagle, American eagle, Haliaeetus leucocephalus" 1103
+25 "European fire salamander, Salamandra salamandra" 1224
+29 "axolotl, mud puppy, Ambystoma mexicanum" 1032
+38 "banded gecko" 1266
+48 "Komodo dragon, Komodo lizard, dragon lizard, giant lizard, Varanus komodoensis" 1079
+63 "Indian cobra, Naja naja" 1202
+73 "barn spider, Araneus cavaticus" 1270
+102 "echidna, spiny anteater, anteater" 1266
+108 "sea anemone, anemone" 1152
+140 "red-backed sandpiper, dunlin, Erolia alpina" 1269
+142 "dowitcher" 1264
+170 "Irish wolfhound" 1273
+222 "kuvasz" 1224
+260 "chow, chow chow" 1268
+273 "dingo, warrigal, warragal, Canis dingo" 1252
+313 "walking stick, walkingstick, stick insect" 1229
+338 "guinea pig, Cavia cobaya" 1106
+341 "hog, pig, grunter, squealer, Sus scrofa" 1140
+344 "hippopotamus, hippo, river horse, Hippopotamus amphibius" 1250
+357 "mink" 1153
+359 "black-footed ferret, ferret, Mustela nigripes" 1249
+372 "baboon" 931
+376 "proboscis monkey, Nasalis larvatus" 1268
+377 "marmoset" 1229
+388 "giant panda, panda, panda bear, coon bear, Ailuropoda melanoleuca" 1109
+394 "sturgeon" 1158
+395 "gar, garfish, garpike, billfish, Lepisosteus osseus" 1254
+397 "puffer, pufferfish, blowfish, globefish" 1270
+404 "airliner" 1023
+419 "Band Aid" 1096
+443 "bib" 1168
+460 "breakwater, groin, groyne, mole, bulwark, seawall, jetty" 947
+486 "cello, violoncello" 1153
+498 "cinema, movie theater, movie theatre, movie house, picture palace" 1274
+515 "cowboy hat, ten-gallon hat" 1138
+540 "drilling platform, offshore rig" 1127
+548 "entertainment center" 773
+567 "frying pan, frypan, skillet" 1170
+568 "fur coat" 1272
+578 "gown" 1028
+579 "grand piano, grand" 1266
+606 "iron, smoothing iron" 1272
+614 "kimono" 1261
+632 "loudspeaker, speaker, speaker unit, loudspeaker system, speaker system" 1270
+655 "miniskirt, mini" 1165
+662 "modem" 1176
+684 "ocarina, sweet potato" 1238
+690 "oxcart" 1231
+697 "pajama, pyjama, pj's, jammies" 1256
+698 "palace" 1242
+702 "parallel bars, bars" 1265
+703 "park bench" 1220
+706 "patio, terrace" 1207
+711 "perfume, essence" 997
+712 "Petri dish" 1179
+718 "pier" 1266
+738 "pot, flowerpot" 1271
+750 "quilt, comforter, comfort, puff" 1248
+759 "reflex camera" 1271
+760 "refrigerator, icebox" 1147
+770 "running shoe" 1151
+776 "sax, saxophone" 1269
+795 "ski" 1198
+801 "snorkel" 1195
+838 "sunscreen, sunblock, sun blocker" 1216
+850 "teddy, teddy bear" 1234
+866 "tractor" 1272
+873 "triumphal arch" 1269
+903 "wig" 1142
+916 "web site, website, internet site, site" 1261
+919 "street sign" 1214
+928 "ice cream, icecream" 1227
+931 "bagel, beigel" 1242
+933 "cheeseburger" 862
+935 "mashed potato" 1273
+941 "acorn squash" 1262
+956 "custard apple" 1200
+959 "carbonara" 1263
+960 "chocolate sauce, chocolate syrup" 1223
+961 "dough" 1108
+962 "meat loaf, meatloaf" 1263
+963 "pizza, pizza pie" 1261
+965 "burrito" 1156
+967 "espresso" 1225
+981 "ballplayer, baseball player" 1246
+982 "groom, bridegroom" 1239
+983 "scuba diver" 1241
+992 "agaric" 1261
