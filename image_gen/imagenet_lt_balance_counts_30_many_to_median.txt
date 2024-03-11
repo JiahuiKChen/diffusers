@@ -1,0 +1,10 @@
+578 "gown" 1240
+355 "llama" 1240
+515 "cowboy hat, ten-gallon hat" 1240
+770 "running shoe" 1240
+486 "cello, violoncello" 1240
+965 "burrito" 1240
+460 "breakwater, groin, groyne, mole, bulwark, seawall, jetty" 1240
+108 "sea anemone, anemone" 1240
+55 "green snake, grass snake" 1240
+540 "drilling platform, offshore rig" 1240

@@ -16,7 +16,7 @@ wandb.init(
     group="embed_mixup_90",
 )
 
-# MIDI BOXES
+# NAS 
 # PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_589.txt"
 # TRAIN_DATA_TXT = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/ImageNet_LT_train.txt"
 # TRAIN_DATA_ROOT = "/mnt/zhang-nas/tensorflow_datasets/downloads/manual/imagenet2012"
@@ -24,7 +24,7 @@ wandb.init(
 # testing output dir
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
-# A40 
+# /datastor1 drive 
 PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
 TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
@@ -133,6 +133,13 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
                                              ).images[0]  
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
                 gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+
+
+# Given downsampled "many" class training txt file and balance counts,  
+# generate images for these classes using ALL conditioning methods 
+MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/"
+
+############################################################ RUNS
 
 # Gen images conditioned on 1 randomly selected image with the same class 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
