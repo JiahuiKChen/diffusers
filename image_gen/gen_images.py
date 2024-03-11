@@ -1,6 +1,6 @@
 import os 
-# os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # MIDI Boxes
-os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
+# os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # NAS
+os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # datastor1
 
 import random
 import wandb
@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="embed_mixup_90",
+    group="30_many_to_few",
 )
 
 # NAS 
@@ -25,8 +25,8 @@ wandb.init(
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # /datastor1 drive 
-PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
-TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
+PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_30_many_to_few.txt"
+TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train_30_many_to_few.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
 OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_90"
 
@@ -62,18 +62,24 @@ with open(TRAIN_DATA_TXT) as train_file:
 
 
 ############################################################ METHODS
-# randomly select one image of given class 
-def get_rand_img(class_label):
+# randomly select n image(s) of given class, defaults to 1
+def get_rand_img(class_label, n=1):
     train_imgs = TRAIN_DICT[class_label]
-    img_path = random.choice(train_imgs)
-    img = load_image(os.path.join(TRAIN_DATA_ROOT, img_path))
-    return img
+    img_paths = random.sample(train_imgs, k=n)
+    imgs = []
+    for img_path in img_paths:
+        img = load_image(os.path.join(TRAIN_DATA_ROOT, img_path))
+        imgs.append(img)
+    if len(imgs) == 1:
+        return imgs[0]
+    return imgs
 
 # randomly select 2 images from given class,
 # perform cutmix on them and return the cutmixed image
 def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
-    img_1 = preprocess(get_rand_img(class_label))
-    img_2 = preprocess(get_rand_img(class_label))
+    imgs = get_rand_img(class_label=class_label, n=2)
+    img_1 = preprocess(imgs[0])
+    img_2 = preprocess(imgs[1])
     dummy_images = torch.stack((img_1, img_2))
     dummy_labels = torch.zeros(size=(2,)).to(torch.int64)
     cond_img = None
@@ -87,7 +93,6 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
 
 
 def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=False):
-    # for each class, generate synthetic images with text label as prompt and randomly selected class image 
     with open(PROMPT_FILE) as gen_file:
         # each line of this file contains the label (text label is the prompt) and how many images need to be generated
         lines = [line.rstrip('\n') for line in gen_file]
@@ -98,7 +103,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
 
         wandb.log({"label": int_label})
 
-        # create dict to pass into distributed inference of {prompts: [], cond_imgs: []}
+        # create dict to pass into distributed inference of {prompts: [], cond_imgs: [], indices: []}
         total_prompts = [txt_label] * gen_count
         all_indices = [i for i in range(gen_count)]
         # image conditioning based on what's specified
@@ -108,8 +113,11 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
             all_cond_imgs = [cutmix_or_mixup(int_label, use_cutmix=False, use_mixup=True) for i in range(gen_count)]
         elif use_embed_mixup or use_embed_cutmix:
             # if doing embedding level mixup or cutmix, pass in tuples of 2 images 
-            # that the model will encode and do mixup or cutmix on the CLIP image embeddings 
-            all_cond_imgs = [(get_rand_img(int_label), get_rand_img(int_label)) for i in range(gen_count)]
+            # that the model will encode and do mixup or cutmix on the CLIP image embeddings
+            all_cond_imgs = []
+            for _ in range(gen_count):
+                imgs = get_rand_img(class_label=int_label, n=2)
+                all_cond_imgs.append((imgs[0], imgs[1])) 
         else:
             # randomly selecting an image from the same training class to generate conditioning image
             all_cond_imgs = [get_rand_img(int_label) for i in range(gen_count)]
@@ -137,10 +145,91 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
 
 # Given downsampled "many" class training txt file and balance counts,  
 # generate images for these classes using ALL conditioning methods 
-MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/"
+MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/30_many_to_few"
+def gen_imgs_all_cond():
+    with open(PROMPT_FILE) as gen_file:
+        # each line of this file contains the label (text label is the prompt) and how many images need to be generated
+        lines = [line.rstrip('\n') for line in gen_file]
+
+    for line in lines:
+        l = line.split("\"")
+        int_label = int(l[0].strip()); txt_label = l[1].strip("\""); gen_count = int(l[2].strip())
+
+        wandb.log({"label": int_label})
+
+        # create dict to pass into distributed inference of {prompts: [], cond_imgs: [] (6 dicts, 1 for each method), indices: []}
+        total_prompts = [txt_label] * gen_count
+        all_indices = [i for i in range(gen_count)]
+        # cutmix conditioning images
+        cutmix_cond_imgs = [cutmix_or_mixup(int_label, use_cutmix=True, use_mixup=False) for i in range(gen_count)]
+        # mixup conditioning images
+        mixup_cond_imgs = [cutmix_or_mixup(int_label, use_cutmix=False, use_mixup=True) for i in range(gen_count)]
+        # emebed-cutmix (tuples of 2 images the model will encode and do mixup or cutmix on the CLIP image embeddings)
+        embed_cutmix_cond_imgs = []
+        for _ in range(gen_count):
+            imgs = get_rand_img(class_label=int_label, n=2)
+            embed_cutmix_cond_imgs.append((imgs[0], imgs[1])) 
+        # emebed-mixup (tuples of 2 images the model will encode and do mixup or cutmix on the CLIP image embeddings)
+        embed_mixup_cond_imgs = [] 
+        for _ in range(gen_count):
+            imgs = get_rand_img(class_label=int_label, n=2)
+            embed_mixup_cond_imgs.append((imgs[0], imgs[1])) 
+        # random training of same class as conditioning image (used for dropout and rand_img_cond)
+        rand_cond_imgs = [get_rand_img(int_label) for i in range(gen_count)]
+        # distributed inference dict with ALL conditioning images for ALL methods
+        prompt_img_dict = {"prompts": total_prompts, 
+                           "cutmix_cond_imgs": cutmix_cond_imgs,
+                           "mixup_cond_imgs": mixup_cond_imgs,
+                           "embed_cutmix_cond_imgs": embed_cutmix_cond_imgs,
+                           "embed_mixup_cond_imgs": embed_mixup_cond_imgs, 
+                           "rand_cond_imgs": rand_cond_imgs, 
+                           "indices": all_indices
+                        }
+        
+        with distributed_state.split_between_processes(prompt_img_dict) as prompt_imgs:
+            # within each process, get all the prompts, images to condition on, and indices -- then generate image
+            prompts = prompt_imgs["prompts"]; indices = prompt_imgs["indices"] 
+            cutmix_cond_imgs = prompt_imgs["cutmix_cond_imgs"]; mixup_cond_imgs = prompt_imgs["mixup_cond_imgs"]; rand_cond_imgs = prompt_imgs["rand_cond_imgs"] 
+            embed_cutmix_cond_imgs = prompt_imgs["embed_cutmix_cond_imgs"]; embed_mixup_cond_imgs = prompt_imgs["embed_mixup_cond_imgs"]
+            print(f"Generating images for {int_label}: {txt_label}")
+            for i in range(len(prompts)):
+                gen_img_name = f"{int_label}_{indices[i]}.jpg"
+                # rand_img_cond
+                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "rand_img_cond", gen_img_name))
+                # dropout
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "dropout", gen_img_name))
+                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                # cutmix
+                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "cutmix", gen_img_name))
+                # embed_cutmix
+                gen_image = img_txt_pipe(embed_cutmix_cond_imgs[i][0], 
+                                            prompts[i], 
+                                            dropout=False,
+                                            embed_cutmix=True,
+                                            embed_mixup=False,
+                                            img_1=embed_cutmix_cond_imgs[i][0],
+                                            img_2=embed_cutmix_cond_imgs[i][1]
+                                            ).images[0]  
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "embed_cutmix", gen_img_name))
+                # mixup
+                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "mixup", gen_img_name)) 
+                # embed_mixup
+                gen_image = img_txt_pipe(embed_mixup_cond_imgs[i][0], 
+                                            prompts[i], 
+                                            dropout=False,
+                                            embed_cutmix=False,
+                                            embed_mixup=True,
+                                            img_1=embed_mixup_cond_imgs[i][0],
+                                            img_2=embed_mixup_cond_imgs[i][1]
+                                            ).images[0]  
+                gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "embed_mixup", gen_img_name)) 
 
 ############################################################ RUNS
 
+### INDIVIDUAL METHODS
 # Gen images conditioned on 1 randomly selected image with the same class 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
 
@@ -157,4 +246,7 @@ MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/"
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
                 
 # Gen images conditioned on embedding-space mixup  
-gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
+# gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
+
+### ALL METHODS (downsampled classees)
+gen_imgs_all_cond()
