@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="30_many_to_few",
+    group="embed_cutmix_dropout_90",
 )
 
 # NAS 
@@ -25,10 +25,10 @@ wandb.init(
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # /datastor1 drive 
-PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_30_many_to_few.txt"
-TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train_30_many_to_few.txt"
+PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
+TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_90"
+OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_dropout_90"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -145,7 +145,7 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
 
 # Given downsampled "many" class training txt file and balance counts,  
 # generate images for these classes using ALL conditioning methods 
-MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/30_many_to_few"
+MULTI_OUTPUT_DIR_ROOT = "/datastor1/jiahuikchen/synth_ImageNet/30_many_to_median"
 def gen_imgs_all_cond():
     with open(PROMPT_FILE) as gen_file:
         # each line of this file contains the label (text label is the prompt) and how many images need to be generated
@@ -230,23 +230,35 @@ def gen_imgs_all_cond():
 ############################################################ RUNS
 
 ### INDIVIDUAL METHODS
-# Gen images conditioned on 1 randomly selected image with the same class 
+# rand_img_cond 
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False)
 
-# Gen images conditioned on mixup-ed random pairs with the same class 
+# mixup
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
                 
-# Gen images conditioned on cutmix-ed random paris with same class
+# mixup-dropout 
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
+                
+# cutmix
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
                 
-# Gen images conditioned on randomly selected images with same class, with dropout applied
+# cutmix-dropout 
+# gen_imgs(dropout=True, use_cutmix=True, use_mixup=False)
+
+# dropout
 # gen_imgs(dropout=True, use_cutmix=False, use_mixup=False)
                 
-# Gen images conditioned on embedding-space cutmix
+# embedding-space cutmix
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
                 
-# Gen images conditioned on embedding-space mixup  
+# embedding-space mixup  
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
+                
+# embed-mixup-dropout  
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
+
+# embed-cutmix-dropout
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
 
 ### ALL METHODS (downsampled classees)
-gen_imgs_all_cond()
+# gen_imgs_all_cond()
