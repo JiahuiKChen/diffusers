@@ -1,5 +1,4 @@
 import os
-# os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # MIDI Boxes
 os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # CS A40 box
 
 import torch
@@ -8,16 +7,11 @@ from diffusers.utils import load_image
 from torchvision.transforms import v2
 
 
-############################# STABLE UNCLIP
+############################## STABLE UNCLIP
 img_txt_pipe = StableUnCLIPImg2ImgPipeline.from_pretrained(
    "stabilityai/stable-diffusion-2-1-unclip", torch_dtype=torch.float16, 
 )
-img_txt_pipe.to("cuda:0")
-#
-#cond_img = load_image("bufo.jpeg")
-#prompt = "worried frog"
-#gen_image = img_txt_pipe(cond_img, prompt, dropout=True).images[0] 
-#gen_image.save("gen_bufo.jpg")
+img_txt_pipe.to("cuda:2")
 
 
 ############################## CUTMIX/MIXUP 
@@ -44,34 +38,20 @@ img_txt_pipe.to("cuda:0")
 
 
 ############################## EMBEDDING SPACE CUTMIX/MIXUP 
-# MIDI img paths
-# img_1 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/bufo.jpeg")
-# img_2 = load_image("/mnt/zhang-nas/jiahuic/diffusers/image_gen/tests/gen_bufo.jpg")
+# real microscope image
+real_img = load_image("/datastor1/jiahuikchen/diffusers/image_gen/microscope/real.jpg")
+prompt = "atomic force microscopy image of a periodic array nanopattern of 100 nm diameter pillars"
 
-# A40 img paths
-img_1 = load_image("/datastor1/jiahuikchen/diffusers/image_gen/tests/bufo.jpeg")
-img_2 = load_image("/datastor1/jiahuikchen/diffusers/image_gen/tests/gen_bufo.jpg")
+# just conoditioning on the image
+gen_images = img_txt_pipe(
+    real_img, 
+    prompt, 
+    num_images_per_prompt=4,
+    dropout=False, 
+    embed_cutmix=False, 
+    embed_mixup=False,
+).images
 
-# embedding mixup
-# gen_image = img_txt_pipe(
-#     img_2, 
-#     "worried frog", 
-#     num_images_per_prompt=4,
-#     dropout=False, 
-#     embed_cutmix=False, 
-#     embed_mixup=True,
-#     img_1 = img_1,
-#     img_2 = img_2
-# ).images
-# for i in range(len(gen_image)):
-#     img = gen_image[i]
-#     img.save(f"embed_mixup_gen_test_{i}.jpg")
-
-# embedding cutmix 
-gen_image = img_txt_pipe(
-    img_2, 
-    "cartoon frog", 
-    num_images_per_prompt=1,
-    dropout=False 
-).images[0]
-gen_image.save("embed_cutmix.jpg")
+for i in range(len(gen_images)):
+    img = gen_images[i]
+    img.save(f"gen_img_{i}.jpg")
