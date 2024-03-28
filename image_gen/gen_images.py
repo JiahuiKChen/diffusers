@@ -13,7 +13,7 @@ from diffusers.utils import load_image
 ##################################################### SETUP
 wandb.init(
     project="StableUnclipImageGen",
-    group="embed_cutmix_dropout_90",
+    group="mixup_dropout_90",
 )
 
 # NAS 
@@ -28,7 +28,7 @@ wandb.init(
 PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
 TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_dropout_90"
+OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/mixup_dropout_90//"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -141,6 +141,8 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
                                              ).images[0]  
                 gen_img_name = f"{int_label}_{indices[i]}.jpg"
                 gen_image.save(os.path.join(OUTPUT_DIR, gen_img_name))
+    
+    print(f"FINISHED -- IMAGES SAVED TO: {OUTPUT_DIR}")
 
 
 # Given downsampled "many" class training txt file and balance counts,  
@@ -227,6 +229,8 @@ def gen_imgs_all_cond():
                                             ).images[0]  
                 gen_image.save(os.path.join(MULTI_OUTPUT_DIR_ROOT, "embed_mixup", gen_img_name)) 
 
+    print(f"FINISHED -- IMAGES SAVED TO: {MULTI_OUTPUT_DIR_ROOT}")
+
 ############################################################ RUNS
 
 ### INDIVIDUAL METHODS
@@ -237,7 +241,7 @@ def gen_imgs_all_cond():
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
                 
 # mixup-dropout 
-# gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
+gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
                 
 # cutmix
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
@@ -258,7 +262,7 @@ def gen_imgs_all_cond():
 # gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
 
 # embed-cutmix-dropout
-gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
 
 ### ALL METHODS (downsampled classees)
 # gen_imgs_all_cond()
