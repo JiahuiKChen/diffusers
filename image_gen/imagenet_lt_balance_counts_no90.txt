@@ -46,6 +46,7 @@
 52 "thunder snake, worm snake, Carphophis amoenus" 1091
 53 "ringneck snake, ring-necked snake, ring snake" 1184
 54 "hognose snake, puff adder, sand viper" 1211
+55 "green snake, grass snake" 1123
 56 "king snake, kingsnake" 1264
 57 "garter snake, grass snake" 1107
 58 "water snake" 1275
@@ -658,6 +659,7 @@
 715 "pickelhaube" 1086
 716 "picket fence, paling" 1254
 717 "pickup, pickup truck" 1139
+719 "piggy bank, penny bank" 1202
 720 "pill bottle" 1267
 721 "pillow" 1213
 722 "ping-pong ball" 1198
