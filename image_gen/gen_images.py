@@ -34,7 +34,7 @@ wandb.init(
 PROMPT_FILE = "/root/diffusers/image_gen/imagenet_lt_balance_counts_no90_327.txt"
 TRAIN_DATA_TXT = "/root/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/root/imagenet"
-OUTPUT_DIR = "/root/synth_data/mixup_dropout/"
+OUTPUT_DIR = "/root/synth_data/mixup_dropout_from_327/"
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
