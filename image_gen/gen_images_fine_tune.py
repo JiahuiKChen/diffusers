@@ -134,11 +134,14 @@ def gen_imgs_all_cond():
                 gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "rand_img_cond", gen_img_name))
                 # dropout
-                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "dropout", gen_img_name))
                 gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "dropout", gen_img_name))
                 # cutmix
                 gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "cutmix", gen_img_name))
+                # cutmix_dropout
+                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "cutmix_dropout", gen_img_name))
                 # embed_cutmix
                 gen_image = img_txt_pipe(embed_cutmix_cond_imgs[i][0], 
                                             prompts[i], 
@@ -149,9 +152,22 @@ def gen_imgs_all_cond():
                                             img_2=embed_cutmix_cond_imgs[i][1]
                                             ).images[0]  
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_cutmix", gen_img_name))
+                # embed_cutmix_dropout
+                gen_image = img_txt_pipe(embed_cutmix_cond_imgs[i][0], 
+                                            prompts[i], 
+                                            dropout=True,
+                                            embed_cutmix=True,
+                                            embed_mixup=False,
+                                            img_1=embed_cutmix_cond_imgs[i][0],
+                                            img_2=embed_cutmix_cond_imgs[i][1]
+                                            ).images[0]  
+                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_cutmix_dropout", gen_img_name))
                 # mixup
                 gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "mixup", gen_img_name)) 
+                # mixup_dropout
+                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "mixup_dropout", gen_img_name)) 
                 # embed_mixup
                 gen_image = img_txt_pipe(embed_mixup_cond_imgs[i][0], 
                                             prompts[i], 
@@ -162,6 +178,16 @@ def gen_imgs_all_cond():
                                             img_2=embed_mixup_cond_imgs[i][1]
                                         ).images[0]  
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_mixup", gen_img_name)) 
+                # embed_mixup_dropout
+                gen_image = img_txt_pipe(embed_mixup_cond_imgs[i][0], 
+                                            prompts[i], 
+                                            dropout=True,
+                                            embed_cutmix=False,
+                                            embed_mixup=True,
+                                            img_1=embed_mixup_cond_imgs[i][0],
+                                            img_2=embed_mixup_cond_imgs[i][1]
+                                        ).images[0]  
+                gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_mixup_dropout", gen_img_name)) 
 
     print(f"FINISHED -- IMAGES SAVED TO: {GEN_IMG_OUT_DIR}")
 
