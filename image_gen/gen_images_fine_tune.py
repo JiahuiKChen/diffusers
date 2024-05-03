@@ -15,8 +15,8 @@ from datasets.pascal import PASCALDataset
 from datasets.caltetch101 import CalTech101Dataset
 from datasets.flowers102 import Flowers102Dataset
 
-DATASET = "COCO"
-GEN_IMG_OUT_DIR = f"/datastor1/jiahuikchen/synth_fine_tune/{DATASET}_synth_imgs"
+DATASET = "pascal"
+GEN_IMG_OUT_DIR = f"/datastor1/jiahuikchen/synth_fine_tune/{DATASET}"
 if not os.path.exists(GEN_IMG_OUT_DIR):
     os.makedirs(GEN_IMG_OUT_DIR)
 
@@ -89,6 +89,7 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
 # images are saved in subdirs corresponding to conditioning methods
 def gen_imgs_all_cond():
     gen_count = 16
+    print(f"\t\t {DATASET} has {dataset.num_classes} classes")
     for c in dataset.class_names:
         wandb.log({"label": c})
         prompt = f"a photo of a {c}"
@@ -189,6 +190,6 @@ def gen_imgs_all_cond():
                                         ).images[0]  
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_mixup_dropout", gen_img_name)) 
 
-    print(f"FINISHED -- IMAGES SAVED TO: {GEN_IMG_OUT_DIR}")
+    print(f"FINISHED {dataset.num_classes} CLASS IMAGE GEN -- IMAGES SAVED TO: {GEN_IMG_OUT_DIR}")
 
 gen_imgs_all_cond()
