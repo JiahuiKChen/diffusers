@@ -4,6 +4,7 @@ os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # datastor1
 
 import random
 import wandb
+os.environ["WANDB__SERVICE_WAIT"] = "300"
 import torch
 from torchvision.transforms import v2
 from accelerate import PartialState
@@ -15,7 +16,7 @@ from datasets.pascal import PASCALDataset
 from datasets.caltetch101 import CalTech101Dataset
 from datasets.flowers102 import Flowers102Dataset
 
-DATASET = "pascal"
+DATASET = "flowers"
 GEN_IMG_OUT_DIR = f"/datastor1/jiahuikchen/synth_fine_tune/{DATASET}"
 if not os.path.exists(GEN_IMG_OUT_DIR):
     os.makedirs(GEN_IMG_OUT_DIR)

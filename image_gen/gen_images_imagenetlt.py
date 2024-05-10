@@ -11,10 +11,6 @@ from diffusers import StableUnCLIPImg2ImgPipeline
 from diffusers.utils import load_image
 
 ##################################################### SETUP
-wandb.init(
-    project="StableUnclipImageGen",
-    group="mixup_dropout",
-)
 
 # NAS 
 # PROMPT_FILE = "/mnt/zhang-nas/jiahuic/diffusers/image_gen/imagenet_lt_balance_counts_589.txt"
@@ -31,10 +27,24 @@ wandb.init(
 # OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_dropout/"
 
 # A100
-PROMPT_FILE = "/root/diffusers/image_gen/imagenet_lt_balance_counts_no90_327.txt"
-TRAIN_DATA_TXT = "/root/diffusers/image_gen/ImageNet_LT_train.txt"
-TRAIN_DATA_ROOT = "/root/imagenet"
-OUTPUT_DIR = "/root/synth_data/mixup_dropout_from_327/"
+PROMPT_FILE = "/home/karen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
+TRAIN_DATA_TXT = "/home/karen/diffusers/image_gen/ImageNet_LT_train.txt"
+TRAIN_DATA_ROOT = "/home/karen/imagenet_raw"
+
+CFG = 7.0
+COND_METHOD = "embed_cutmix_dropout"
+OUTPUT_DIR = f"/home/karen/synth_data/{COND_METHOD}90_{CFG}cfg/"
+
+wandb.init(
+    project="StableUnclipImageGen",
+    group=OUTPUT_DIR.split('/')[-1],
+    config={
+        "GEN_IMG_OUT_DIR": OUTPUT_DIR,
+        "CFG_Scale": CFG,
+        "CONDITIONING_METHOD": COND_METHOD,
+        "PROMPT_FILE": PROMPT_FILE
+    }
+)
 
 # cutmix/mixup
 cutmix = v2.CutMix(num_classes=1)
@@ -98,7 +108,14 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
     return v2.functional.to_pil_image(cond_img)
 
 
-def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=False):
+def gen_imgs(dropout=False, 
+             use_cutmix=False, 
+             use_mixup=False, 
+             use_embed_mixup=False, 
+             use_embed_cutmix=False,
+             guidance_scale=7.0,
+             ):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(PROMPT_FILE) as gen_file:
         # each line of this file contains the label (text label is the prompt) and how many images need to be generated
         lines = [line.rstrip('\n') for line in gen_file]
@@ -135,10 +152,11 @@ def gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=F
             for i in range(len(prompts)):
                 print(f"Generating image {indices[i]} of {int_label}: \"{prompts[i]}\"")
                 if not use_embed_cutmix and not use_embed_mixup:
-                    gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout).images[0] 
+                    gen_image = img_txt_pipe(cond_imgs[i], prompts[i], dropout=dropout, guidance_scale=guidance_scale).images[0] 
                 else:
                     gen_image = img_txt_pipe(cond_imgs[i][0], 
                                                 prompts[i], 
+                                                guidance_scale=guidance_scale,
                                                 dropout=dropout,
                                                 embed_cutmix=use_embed_cutmix,
                                                 embed_mixup=use_embed_mixup,
@@ -247,7 +265,7 @@ def gen_imgs_all_cond():
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=True)
                 
 # mixup-dropout 
-gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
+# gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
                 
 # cutmix
 # gen_imgs(dropout=False, use_cutmix=True, use_mixup=False)
@@ -260,6 +278,9 @@ gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
                 
 # embedding-space cutmix
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)    
+
+# embedding-space cutmix dropout with more steps
+# gen_imgs(guidance_scale=7.0, dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)
                 
 # embedding-space mixup  
 # gen_imgs(dropout=False, use_cutmix=False, use_mixup=False, use_embed_mixup=True, use_embed_cutmix=False)             
@@ -272,3 +293,7 @@ gen_imgs(dropout=True, use_cutmix=False, use_mixup=True)
 
 ### ALL METHODS (downsampled classees)
 # gen_imgs_all_cond()
+
+if COND_METHOD == "embed_cutmix_dropout":
+    # embedding-space cutmix dropout 
+    gen_imgs(guidance_scale=CFG, dropout=True, use_cutmix=False, use_mixup=False, use_embed_mixup=False, use_embed_cutmix=True)
