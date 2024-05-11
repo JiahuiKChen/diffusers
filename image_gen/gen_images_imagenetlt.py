@@ -33,11 +33,11 @@ TRAIN_DATA_ROOT = "/home/karen/imagenet_raw"
 
 CFG = 7.0
 COND_METHOD = "embed_cutmix_dropout"
-OUTPUT_DIR = f"/home/karen/synth_data/{COND_METHOD}90_{CFG}cfg/"
+OUTPUT_DIR = f"/home/karen/synth_data/{COND_METHOD}90_{CFG}cfg"
 
 wandb.init(
     project="StableUnclipImageGen",
-    group=OUTPUT_DIR.split('/')[-1],
+    group= f"{OUTPUT_DIR.split('/')[-1]}",
     config={
         "GEN_IMG_OUT_DIR": OUTPUT_DIR,
         "CFG_Scale": CFG,
