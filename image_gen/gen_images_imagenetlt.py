@@ -1,6 +1,6 @@
 import os 
 # os.environ['HF_HOME'] = '/mnt/zhang-nas/jiahuic/hf_cache' # NAS
-# os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # datastor1
+os.environ['HF_HOME'] = '/datastor1/jiahuikchen/hf_cache' # datastor1
 
 import random
 import wandb
@@ -21,19 +21,19 @@ from diffusers.utils import load_image
 # OUTPUT_DIR = "/mnt/zhang-nas/jiahuic/synth_LT_data/test"
 
 # /datastor1 drive 
-# PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_no90_391.txt"
+# PROMPT_FILE = "/datastor1/jiahuikchen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
 # TRAIN_DATA_TXT = "/datastor1/jiahuikchen/diffusers/image_gen/ImageNet_LT_train.txt"
 # TRAIN_DATA_ROOT = "/datastor1/imagenet2012_manual"
-# OUTPUT_DIR = "/datastor1/jiahuikchen/synth_ImageNet/embed_mixup_dropout/"
 
 # A100
-PROMPT_FILE = "/home/karen/diffusers/image_gen/imagenet_lt_balance_counts_90.txt"
+PROMPT_FILE = "/home/karen/diffusers/image_gen/imagenet_lt_balance_counts_no90.txt"
 TRAIN_DATA_TXT = "/home/karen/diffusers/image_gen/ImageNet_LT_train.txt"
 TRAIN_DATA_ROOT = "/home/karen/imagenet_raw"
 
-CFG = 7.0
+CFG = 2.0
 COND_METHOD = "embed_cutmix_dropout"
-OUTPUT_DIR = f"/home/karen/synth_data/{COND_METHOD}90_{CFG}cfg"
+OUTPUT_DIR = f"/home/karen/synth_data/{COND_METHOD}_{CFG}cfg" # A100
+# OUTPUT_DIR = f"/datastor1/jiahuikchen/synth_ImageNet/{COND_METHOD}90_{CFG}cfg" # /datastor1
 
 wandb.init(
     project="StableUnclipImageGen",
