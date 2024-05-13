@@ -13,7 +13,9 @@ img_txt_pipe = StableUnCLIPImg2ImgPipeline.from_pretrained(
    "stabilityai/stable-diffusion-2-1-unclip", torch_dtype=torch.float16, 
 )
 img_txt_pipe.to("cuda:0")
-#
+# default scheduler is: PNDMScheduler
+# print(img_txt_pipe.scheduler)
+
 #cond_img = load_image("bufo.jpeg")
 #prompt = "worried frog"
 #gen_image = img_txt_pipe(cond_img, prompt, dropout=True).images[0] 
@@ -61,8 +63,10 @@ gen_image = img_txt_pipe(
     embed_cutmix=False, 
     embed_mixup=True,
     img_1 = img_1,
-    img_2 = img_2
+    img_2 = img_2,
+    guidance_scale=2.0,
+    eta=0.5
 ).images
-for i in range(len(gen_image)):
-    img = gen_image[i]
-    img.save(f"embed_mixup_gen_test_{i}.jpg")
+# for i in range(len(gen_image)):
+#     img = gen_image[i]
+#     img.save(f"embed_mixup_gen_test_{i}.jpg")

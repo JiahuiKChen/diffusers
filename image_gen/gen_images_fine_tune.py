@@ -16,15 +16,26 @@ from datasets.pascal import PASCALDataset
 from datasets.caltetch101 import CalTech101Dataset
 from datasets.flowers102 import Flowers102Dataset
 
-DATASET = "flowers"
-GEN_IMG_OUT_DIR = f"/datastor1/jiahuikchen/synth_fine_tune/{DATASET}"
-if not os.path.exists(GEN_IMG_OUT_DIR):
-    os.makedirs(GEN_IMG_OUT_DIR)
+DATASET = "caltech"
+GEN_IMG_OUT_DIR = f"/datastor1/jiahuikchen/synth_fine_tune/{DATASET}_2.0CFG"
+os.makedirs(GEN_IMG_OUT_DIR, exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "dropout"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "rand_img_cond"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "cutmix"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "cutmix_dropout"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "embed_cutmix"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "embed_cutmix_dropout"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "mixup"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "mixup_dropout"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "embed_mixup"), exist_ok=True)
+os.makedirs(os.path.join(GEN_IMG_OUT_DIR, "embed_mixup_dropout"), exist_ok=True)
+
 
 wandb.init(
     project="StableUnclipImageGen",
-    group=f"{DATASET}",
+    group=f"{DATASET}_2.0CFG",
     config={
+        "CFG": 2.0,
         "DATASET": DATASET,
         "GEN_IMG_OUT_DIR": GEN_IMG_OUT_DIR
     }
@@ -88,7 +99,7 @@ def cutmix_or_mixup(class_label, use_cutmix=True, use_mixup=False):
 
 # Generate 16 images for each class with every conditioning method
 # images are saved in subdirs corresponding to conditioning methods
-def gen_imgs_all_cond():
+def gen_imgs_all_cond(guidance_scale=2.0):
     gen_count = 16
     print(f"\t\t {DATASET} has {dataset.num_classes} classes")
     for c in dataset.class_names:
@@ -133,20 +144,21 @@ def gen_imgs_all_cond():
             for i in range(len(prompts)):
                 gen_img_name = f"{c}_{indices[i]}.jpg"
                 # rand_img_cond
-                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "rand_img_cond", gen_img_name))
                 # dropout
-                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image = img_txt_pipe(rand_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=True).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "dropout", gen_img_name))
                 # cutmix
-                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "cutmix", gen_img_name))
                 # cutmix_dropout
-                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image = img_txt_pipe(cutmix_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=True).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "cutmix_dropout", gen_img_name))
                 # embed_cutmix
                 gen_image = img_txt_pipe(embed_cutmix_cond_imgs[i][0], 
                                             prompts[i], 
+                                            guidance_scale=guidance_scale,
                                             dropout=False,
                                             embed_cutmix=True,
                                             embed_mixup=False,
@@ -157,6 +169,7 @@ def gen_imgs_all_cond():
                 # embed_cutmix_dropout
                 gen_image = img_txt_pipe(embed_cutmix_cond_imgs[i][0], 
                                             prompts[i], 
+                                            guidance_scale=guidance_scale,
                                             dropout=True,
                                             embed_cutmix=True,
                                             embed_mixup=False,
@@ -165,14 +178,15 @@ def gen_imgs_all_cond():
                                             ).images[0]  
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "embed_cutmix_dropout", gen_img_name))
                 # mixup
-                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], dropout=False).images[0] 
+                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=False).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "mixup", gen_img_name)) 
                 # mixup_dropout
-                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], dropout=True).images[0] 
+                gen_image = img_txt_pipe(mixup_cond_imgs[i], prompts[i], guidance_scale=guidance_scale, dropout=True).images[0] 
                 gen_image.save(os.path.join(GEN_IMG_OUT_DIR, "mixup_dropout", gen_img_name)) 
                 # embed_mixup
                 gen_image = img_txt_pipe(embed_mixup_cond_imgs[i][0], 
                                             prompts[i], 
+                                            guidance_scale=guidance_scale,
                                             dropout=False,
                                             embed_cutmix=False,
                                             embed_mixup=True,
@@ -183,6 +197,7 @@ def gen_imgs_all_cond():
                 # embed_mixup_dropout
                 gen_image = img_txt_pipe(embed_mixup_cond_imgs[i][0], 
                                             prompts[i], 
+                                            guidance_scale=guidance_scale,
                                             dropout=True,
                                             embed_cutmix=False,
                                             embed_mixup=True,
